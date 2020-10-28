@@ -60,4 +60,18 @@ update employee_payroll set gender = 'M' where name = 'Bill' or name = 'Charlie'
 
 update employee_payroll set gender = 'F' where name = 'Mark';
 
+# Ability to find sum, averagem, min, max and number of male and female employees
 
+select sum(salary) from employee_payroll where gender = 'F' group by gender;
+
+select sum(salary) from employee_payroll where gender = 'M' group by gender;
+
+select gender, sum(salary) from employee_payroll group by gender;
+
+select gender, avg(salary) from employee_payroll group by gender;
+
+select gender, count(name) from employee_payroll group by gender;
+
+select min(salary) from employee_payroll;
+
+select max(salary) from employee_payroll;
