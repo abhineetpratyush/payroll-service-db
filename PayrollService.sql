@@ -38,3 +38,14 @@ values
 
 # Ability to retrieve all data from employee_payroll table
 select * from employee_payroll;
+
+# Ability to get salary for a particular employee
+select salary from employee_payroll where name = 'Bill';
+
+# Ability to delete a particular record 
+delete from employee_payroll where name = 'Bill';
+
+# Ability to select all fields for employees acording to start date in a range
+select * from employee_payroll 
+	where start between cast('2018-01-01' as date) and date(now());
+
