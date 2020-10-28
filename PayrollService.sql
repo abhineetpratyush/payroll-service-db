@@ -36,4 +36,5 @@ values
    ('Mark', 2000000.00, '2019-11-13'),
    ('Charlie', 3000000.00, '2020-05-21');
 
-
+# Ability to retrieve all data from employee_payroll table
+select * from employee_payroll;
