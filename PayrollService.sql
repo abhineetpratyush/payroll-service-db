@@ -12,4 +12,18 @@ use payroll_service;
 # To see currently used database
 select database();
 
+# Create table
+create table employee_payroll
+(
+  id 	       int unsigned not null auto_increment,
+  name	       varchar(150) not null,
+  salary       double not null,
+  start        date not null,
+  primary key  (id)
+);
 
+# Drop table
+drop table employee_payroll;
+
+# Display details of fields of table
+describe employee_payroll;
