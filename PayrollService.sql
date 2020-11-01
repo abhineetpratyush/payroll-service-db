@@ -116,4 +116,85 @@ values
 
 select * from employee_payroll where name = 'Terissa';
 
+# Implement ER diagram into payroll_service database
 
+drop table employee_payroll;
+
+create table company 
+(
+  comp_id      int unsigned not null,
+  comp_name    varchar(150) not null,
+  primary key  (comp_id)
+);
+
+insert into company 
+values
+(1,'XYZ Global');
+
+create table department
+(
+	department varchar(50) not null;
+	primary key (department)
+);
+
+insert into department
+values 
+('Finance'),
+('IT'),
+('Marketing'),
+('Operations'),
+('Sales');
+
+create table employee
+(
+	emp_id int unsigned not null,
+	comp_id int unsigned,
+	name varchar(150) not null,
+	gender char(1),
+	address varchar(300) not null,
+	phone_number varchar(50) not null,
+	start date not null,
+	primary key (emp_id),
+	foreign key (comp_id) references company(comp_id)
+);
+
+insert into employee
+values
+(1,1,'Bill','M','d-208, bhiwandi','1234567891','2018-01-03'),
+(2,1,'Mark','F','e-208, bangalore','1234567892','2019-11-13'),
+(3,1,'Charlie','M','f-218, delhi','1233567892','2020-05-21'),
+(4,1,'Terissa','F','g-278, mumbai','0233567892','2020-04-01');
+
+create table employee_department
+(
+	emp_id     int unsigned,
+	department varchar(50),
+	foreign key (emp_id) references employee(emp_id),
+	foreign key (department) references department(department)
+);
+
+insert into employee_department
+values
+(4,'Sales'),
+(4,'Marketing'),
+(1,'IT'),
+(2,'Finance'),
+(3,'Operations');
+
+create table payroll
+(
+	emp_id int unsigned,
+	basic_pay double not null,
+	deductions double not null,
+	taxable_pay double not null,
+	tax double not null,
+	net_pay double not null,
+	foreign key (emp_id) references employee(emp_id)
+);
+
+insert into payroll
+values
+(1,2000,500,1500,100,1400),
+(2,2500,400,2100,100,2000),
+(3,2600,300,2300,200,2100),
+(4,1000,200,800,50,750);
