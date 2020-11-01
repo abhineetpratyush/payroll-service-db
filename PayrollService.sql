@@ -76,7 +76,7 @@ select min(salary) from employee_payroll;
 
 select max(salary) from employee_payroll;
 
-# Extend to insert new files for phone_number, address (default value TBD), department
+# Extend to insert new fields for phone_number, address (default value TBD), department
 
 alter table employee_payroll 
 add phone_number varchar(250) after name;
@@ -95,5 +95,14 @@ insert into employee_payroll
 values
 ('Terissa', 2500000.00, '2020-04-01', 'F', 'Marketing');
 
+# Extend to add fields related to salary and tax calculation
 
+alter table employee_payroll rename column salary to basic_pay;
 
+alter table employee_payroll add deductions double not null after basic_pay;
+
+alter table employee_payroll add taxable_pay double not null after deductions;
+
+alter table employee_payroll add tax double not null after taxable_pay;
+
+alter table employee_payroll add net_pay double not null after tax;
