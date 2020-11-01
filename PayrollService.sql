@@ -198,3 +198,40 @@ values
 (2,2500,400,2100,100,2000),
 (3,2600,300,2300,200,2100),
 (4,1000,200,800,50,750);
+
+# Ensure that the previously executed retrieve queries work
+
+select * from employee
+inner join
+payroll
+on employee.emp_id = payroll.emp_id;
+
+select * from employee
+inner join
+payroll
+on employee.emp_id = payroll.emp_id
+where employee.name = 'Bill';
+
+select * from employee
+inner join
+payroll
+on employee.emp_id = payroll.emp_id
+where employee.start between cast('2020-01-01' as date) and date(now());
+
+select gender, sum(payroll.basic_pay) from payroll inner join employee
+on payroll.emp_id = employee.emp_id
+group by gender;
+ 
+select gender, count(*) from employee
+group by gender;
+
+select gender, max(basic_pay) as 'MAX SALARY FOR A GENDER'
+from payroll
+inner join employee
+on payroll.emp_id = employee.emp_id
+group by gender;
+
+select name, department
+from employee
+inner join employee_department
+where employee.emp_id = employee_department.emp_id;
