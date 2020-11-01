@@ -106,3 +106,14 @@ alter table employee_payroll add taxable_pay double not null after deductions;
 alter table employee_payroll add tax double not null after taxable_pay;
 
 alter table employee_payroll add net_pay double not null after tax;
+
+# Ability to make Terissa part of both sales and marketing department
+
+insert into employee_payroll
+(name, start, gender, department, basic_pay, deductions, taxable_pay, tax, net_pay)
+values
+('Terissa', '2020-04-01', 'F', 'Sales', 2500000.00, 100000.00, 2400000.00, 100000.00, 2300000.00);
+
+select * from employee_payroll where name = 'Terissa';
+
+
