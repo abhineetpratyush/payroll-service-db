@@ -75,3 +75,25 @@ select gender, count(name) from employee_payroll group by gender;
 select min(salary) from employee_payroll;
 
 select max(salary) from employee_payroll;
+
+# Extend to insert new files for phone_number, address (default value TBD), department
+
+alter table employee_payroll 
+add phone_number varchar(250) after name;
+
+alter table employee_payroll
+add address varchar(250) after phone_number;
+
+alter table employee_payroll
+alter address set deafult 'TBD';
+
+alter table employee_payroll
+add department varchar(150) not null after address;
+
+insert into employee_payroll
+(name, salary, start, gender, department)
+values
+('Terissa', 2500000.00, '2020-04-01', 'F', 'Marketing');
+
+
+
